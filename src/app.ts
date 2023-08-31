@@ -1,21 +1,16 @@
-//Import the OpenAPI Large Language Model (you can import other models here eg. Cohere)
-import { OpenAI } from "langchain/llms/openai";
+  //Import the PromptTemplate module
+  import { PromptTemplate } from "langchain/prompts";
 
-//Load environment variables (populate process.env from .env file)
-import * as dotenv from "dotenv";
-dotenv.config();
+  export const run = async () => {
+      //Create the template. The template is actually a "parameterized prompt". A "parameterized prompt" is a prompt in which the input parameter names are used and the parameter values are supplied from external input 
+      const template = "What is a good name for a company that makes {product}?";
 
-export const run = async () => {
+      //Instantiate "PromptTemplate" passing the prompt template string initialized above and a list of variable names the final prompt template will expect
+      const prompt = new PromptTemplate({ template, inputVariables: ["product"] });
 
-    //Instantiante the OpenAI model 
-    //Pass the "temperature" parameter which controls the RANDOMNESS of the model's output. A lower temperature will result in more predictable output, while a higher temperature will result in more random output. The temperature parameter is set between 0 and 1, with 0 being the most predictable and 1 being the most random
-    const model = new OpenAI({ temperature: 0.9 });
-
-    //Calls out to the model's (OpenAI's) endpoint passing the prompt. This call returns a string
-    const res = await model.call(
-        "What would be a good company name a company that makes colorful socks?"
-    );
+      //Create a new prompt from the combination of the template and input variables. Pass the value for the variable name that was sent in the "inputVariables" list passed to "PromptTemplate" initialization call
+      const res = await prompt.format({ product: "colorful socks" });
     console.log({ res });
-};
+  };
 
-run();
+  run();
