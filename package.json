@@ -1,0 +1,42 @@
+{
+  "name": "langchain-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "license": "AGPL-version-3.0",
+  "private": false,
+  "engines": {
+    "node": ">= 14.0.0",
+    "npm": ">= 6.0.0"
+  },
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "langchain",
+    "openAI"
+  ],
+  "author": {
+    "name": "Anis Memon",
+    "email": "anismomin.dev@gmail.com"
+  },
+  "contributors": [],
+  "scripts": {
+    "build": "tsc",
+    "start": "node ./dist/app.js",
+    "dev": "ts-node --esm ./src/app.ts"
+  },
+  "dependencies": {
+    "@types/node": "^20.5.7",
+    "dotenv": "^16.3.1",
+    "langchain": "^0.0.138",
+    "openai": "^4.3.1",
+    "typescript": "^5.2.2"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.1"
+  }
+}
